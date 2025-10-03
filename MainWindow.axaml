@@ -8,26 +8,35 @@
         x:DataType="local:MainWindow"
         Title="kontaktbok">
     <DockPanel>
-        <Button Content="Hello!"/>
-        <ListBox x:Name="ContactsList" ItemsSource="{Binding Contacts}">
+        <ListBox x:Name="ContactsList" ItemsSource="{Binding Contacts}" SelectedItem="{Binding SelectedContact}">
             <ListBox.ItemTemplate>
                 <DataTemplate x:DataType="local:Contact">
                     <StackPanel Orientation="Horizontal">
-                        <StackPanel Margin="10">
+                        <StackPanel>
                             <TextBlock Text="{Binding Name}"/>
-                            <TextBlock Text="{Binding Adress}"/>
+                            <StackPanel IsVisible="{Binding $parent[ListBoxItem].IsSelected}">
+                                <TextBlock Text="{Binding Adress}"/>
+                                <TextBlock Text="{Binding ZipCode}"/>
+                                <TextBlock Text="{Binding City}"/>
+                                <TextBlock Text="{Binding Phone}"/>
+                                <TextBlock Text="{Binding EMail}"/>
+                                
+                            </StackPanel>
                         </StackPanel>
-                        <StackPanel Margin="10">
-                            <TextBlock Text="{Binding ZipCode}"/>
-                            <TextBlock Text="{Binding City}"/>
-                        </StackPanel>
-                        <StackPanel Margin="10">
-                            <TextBlock Text="{Binding Phone}"/>
-                            <TextBlock Text="{Binding EMail}"/>
+                        <StackPanel IsVisible="{Binding $parent[ListBoxItem].IsSelected}">
+                            <Button Content="Delete" Click="OnDeleteClick"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <StackPanel DataContext="{Binding SelectedContact}">
+            <TextBox Text="{Binding Name, Mode=TwoWay}"/>
+            <TextBox Text="{Binding Adress, Mode=TwoWay}"/>
+            <TextBox Text="{Binding ZipCode, Mode=TwoWay}"/>
+            <TextBox Text="{Binding City, Mode=TwoWay}"/>
+            <TextBox Text="{Binding Phone, Mode=TwoWay}"/>
+            <TextBox Text="{Binding EMail, Mode=TwoWay}"/>
+        </StackPanel>
     </DockPanel>
 </Window>

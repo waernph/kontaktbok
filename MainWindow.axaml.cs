@@ -1,12 +1,29 @@
 using System.Collections.Generic;
 using Avalonia.Controls;
 using Avalonia.VisualTree;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace kontaktbok;
 
-public partial class MainWindow : Window
+public partial class MainWindow : Window, INotifyPropertyChanged
 {
-    public List<Contact> Contacts { get; } = new List<Contact>();
+    public ObservableCollection<Contact> Contacts { get; } = new ObservableCollection<Contact>();
+
+    private Contact? selectedContact;
+    public Contact? SelectedContact
+    {
+        get => selectedContact;
+        set
+        {
+            if (selectedContact != value)
+            {
+                selectedContact = value;
+                OnPropertyChanged(nameof(SelectedContact));
+            }
+        }
+    }
+
     public MainWindow()
     {
         InitializeComponent();
@@ -16,4 +33,8 @@ public partial class MainWindow : Window
 
         DataContext = this;
     }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+    protected void OnPropertyChanged(string propertyName) =>
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 }
