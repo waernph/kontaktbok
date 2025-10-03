@@ -24,7 +24,7 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel IsVisible="{Binding $parent[ListBoxItem].IsSelected}">
-                            <Button Content="Delete" Click="OnDeleteClick"/>
+                            <Button Content="Delete"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
