@@ -1,6 +1,11 @@
+//using System.ComponentModel.DataAnnotations;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
+using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Unicode;
 
 namespace kontaktbok;
 
@@ -146,5 +151,72 @@ public class Contact : INotifyPropertyChanged
         {
             writer.WriteLine(json);
         }
+    }
+
+    public static void SearchContact(string userInput)
+    {
+        var loadedContactList = LoadAllContacts();
+        //var contactList = (from contact in contactData select contact).ToList();
+
+        var result =
+            from contact in loadedContactList
+            where contact.Name.Contains(userInput) || contact.ZipCode.Contains(userInput)
+            select contact;
+
+        /* foreach (var contact in result)
+        {
+            Console.WriteLine(contact.Name);
+            Console.WriteLine(contact.Adress);
+            Console.WriteLine(contact.ZipCode);
+            Console.WriteLine(contact.City);
+            Console.WriteLine(contact.Phone);
+            Console.WriteLine(contact.Email);
+        } */
+    }
+
+    public static ObservableCollection<Contact> LoadAllContacts() //Metod för att ladda alla kontakter från Contacts.json
+    {
+        var contractsFileExists = File.Exists("Contracts.json");
+        if (!contractsFileExists)
+        {
+            // Create Contracts file.
+        }
+
+        var options = new JsonSerializerOptions()
+        {
+            WriteIndented = true,
+            IncludeFields = true,
+            AllowTrailingCommas = true,
+            Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+        };
+
+        string contactJsonData = File.ReadAllText("Contacts.json");
+
+        ObservableCollection<Contact>? contactData = JsonSerializer.Deserialize<
+            ObservableCollection<Contact>
+        >(contactJsonData, options);
+
+        /* if (contactData == null)
+        {
+            throw new Exception("Unhandled error - when deserializing file"); //Hantera med try catch i program
+        } */
+
+        return contactData;
+    }
+
+    public static void SaveOnExit(ObservableCollection<Contact> updatedContactList)
+    {
+        var options = new JsonSerializerOptions()
+        {
+            WriteIndented = true,
+            IncludeFields = true,
+            AllowTrailingCommas = true,
+            Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+        };
+        string contactJsonData = JsonSerializer.Serialize<ObservableCollection<Contact>>(
+            updatedContactList,
+            options
+        );
+        File.WriteAllTextAsync("Contacts.json", contactJsonData);
     }
 }
