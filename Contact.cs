@@ -7,6 +7,8 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
 
+//using Tmds.DBus.Protocol;
+
 namespace kontaktbok;
 
 public class Contact : INotifyPropertyChanged
@@ -17,6 +19,7 @@ public class Contact : INotifyPropertyChanged
     private string city;
     private string phone;
     private string eMail;
+    private readonly string filePath = "Contacts.json";
 
     public string Name
     {
@@ -120,16 +123,9 @@ public class Contact : INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    public static void SaveToFile(
-        string Name,
-        string Adress,
-        string ZipCode,
-        string City,
-        string Phone,
-        string EMail
-    )
+    public static void SaveToFile(ObservableCollection<Contact> contactItem)
     {
-        var contactItem = new
+        /* var contactItem = new
         {
             Name,
             Adress,
@@ -137,17 +133,18 @@ public class Contact : INotifyPropertyChanged
             City,
             Phone,
             EMail,
-        };
+        }; */
+
         string fileName = "Contacts.json";
         var options = new JsonSerializerOptions
         {
             WriteIndented = true,
             AllowTrailingCommas = true,
+            Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
         };
         string json = JsonSerializer.Serialize(contactItem, options);
 
-        //Console.WriteLine(json);
-        using (StreamWriter writer = new StreamWriter(fileName, true))
+        using (StreamWriter writer = new StreamWriter(fileName, false))
         {
             writer.WriteLine(json);
         }
@@ -162,24 +159,14 @@ public class Contact : INotifyPropertyChanged
             from contact in loadedContactList
             where contact.Name.Contains(userInput) || contact.ZipCode.Contains(userInput)
             select contact;
-
-        /* foreach (var contact in result)
-        {
-            Console.WriteLine(contact.Name);
-            Console.WriteLine(contact.Adress);
-            Console.WriteLine(contact.ZipCode);
-            Console.WriteLine(contact.City);
-            Console.WriteLine(contact.Phone);
-            Console.WriteLine(contact.Email);
-        } */
     }
 
     public static ObservableCollection<Contact> LoadAllContacts() //Metod för att ladda alla kontakter från Contacts.json
     {
-        var contractsFileExists = File.Exists("Contracts.json");
+        var contractsFileExists = File.Exists("Contacts.json");
         if (!contractsFileExists)
         {
-            // Create Contracts file.
+            // Create Contacts file.
         }
 
         var options = new JsonSerializerOptions()
@@ -213,10 +200,7 @@ public class Contact : INotifyPropertyChanged
             AllowTrailingCommas = true,
             Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
         };
-        string contactJsonData = JsonSerializer.Serialize<ObservableCollection<Contact>>(
-            updatedContactList,
-            options
-        );
+        string contactJsonData = JsonSerializer.Serialize(updatedContactList, options);
         File.WriteAllTextAsync("Contacts.json", contactJsonData);
     }
 }

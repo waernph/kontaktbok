@@ -28,6 +28,8 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     {
         InitializeComponent();
 
+        Contacts = Contact.LoadAllContacts();
+
         Contacts.Add(
             new Contact(
                 "John Doe",
@@ -48,7 +50,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
                 "john.doe@gmail.com"
             )
         );
-        Contacts = Contact.LoadAllContacts();
+        Contact.SaveToFile(Contacts);
 
         DataContext = this;
     }
