@@ -1,0 +1,50 @@
+[
+  {
+    "Name": "Philip Wærn",
+    "Adress": "Kaggeledstorget 12",
+    "ZipCode": "416 74",
+    "City": "Göteborg",
+    "Phone": "070 123 45 67",
+    "EMail": null
+  },
+  {
+    "Name": "Anna Svensson",
+    "Adress": "Storgatan 45",
+    "ZipCode": "411 05",
+    "City": "Göteborg",
+    "Phone": "073 456 78 90",
+    "EMail": null
+  },
+  {
+    "Name": "Erik Johansson",
+    "Adress": "Björkvägen 8",
+    "ZipCode": "114 55",
+    "City": "Stockholm",
+    "Phone": "076 234 56 78",
+    "EMail": null
+  },
+  {
+    "Name": "Philip Karlsson",
+    "Adress": "Ängsvägen 3",
+    "ZipCode": "222 22",
+    "City": "Lund",
+    "Phone": "072 987 65 43",
+    "EMail": null
+  },
+  {
+    "Name": "John Doe",
+    "Adress": "Street 1",
+    "ZipCode": "123 45",
+    "City": "Awesome Town",
+    "Phone": "123 456 789",
+    "EMail": "john.doe@gmail.com"
+  },
+  {
+    "Name": "John Doe",
+    "Adress": "Street 2",
+    "ZipCode": "123 45",
+    "City": "Awesome Town",
+    "Phone": "123 456 789",
+    "EMail": "john.doe@gmail.com"
+  }
+]

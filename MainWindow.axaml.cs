@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Avalonia.Controls;
-using Avalonia.VisualTree;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using Avalonia.Controls;
+using Avalonia.VisualTree;
 
 namespace kontaktbok;
 
@@ -28,13 +28,35 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     {
         InitializeComponent();
 
-        Contacts.Add(new Contact("John Doe", "Street 1", "123 45", "Awesome Town", "123 456 789", "john.doe@gmail.com"));
-        Contacts.Add(new Contact("John Doe", "Street 2", "123 45", "Awesome Town", "123 456 789", "john.doe@gmail.com"));
+        Contacts = Contact.LoadAllContacts();
+
+        Contacts.Add(
+            new Contact(
+                "John Doe",
+                "Street 1",
+                "123 45",
+                "Awesome Town",
+                "123 456 789",
+                "john.doe@gmail.com"
+            )
+        );
+        Contacts.Add(
+            new Contact(
+                "John Doe",
+                "Street 2",
+                "123 45",
+                "Awesome Town",
+                "123 456 789",
+                "john.doe@gmail.com"
+            )
+        );
+        Contact.SaveToFile(Contacts);
 
         DataContext = this;
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
+
     protected void OnPropertyChanged(string propertyName) =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 }

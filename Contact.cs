@@ -1,6 +1,13 @@
+//using System.ComponentModel.DataAnnotations;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
+using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Unicode;
+
+//using Tmds.DBus.Protocol;
 
 namespace kontaktbok;
 
@@ -12,6 +19,7 @@ public class Contact : INotifyPropertyChanged
     private string city;
     private string phone;
     private string eMail;
+    private readonly string filePath = "Contacts.json";
 
     public string Name
     {
@@ -115,16 +123,9 @@ public class Contact : INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    public static void SaveToFile(
-        string Name,
-        string Adress,
-        string ZipCode,
-        string City,
-        string Phone,
-        string EMail
-    )
+    public static void SaveToFile(ObservableCollection<Contact> contactItem)
     {
-        var contactItem = new
+        /* var contactItem = new
         {
             Name,
             Adress,
@@ -132,19 +133,74 @@ public class Contact : INotifyPropertyChanged
             City,
             Phone,
             EMail,
-        };
+        }; */
+
         string fileName = "Contacts.json";
         var options = new JsonSerializerOptions
         {
             WriteIndented = true,
             AllowTrailingCommas = true,
+            Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
         };
         string json = JsonSerializer.Serialize(contactItem, options);
 
-        //Console.WriteLine(json);
-        using (StreamWriter writer = new StreamWriter(fileName, true))
+        using (StreamWriter writer = new StreamWriter(fileName, false))
         {
             writer.WriteLine(json);
         }
+    }
+
+    public static void SearchContact(string userInput)
+    {
+        var loadedContactList = LoadAllContacts();
+        //var contactList = (from contact in contactData select contact).ToList();
+
+        var result =
+            from contact in loadedContactList
+            where contact.Name.Contains(userInput) || contact.ZipCode.Contains(userInput)
+            select contact;
+    }
+
+    public static ObservableCollection<Contact> LoadAllContacts() //Metod för att ladda alla kontakter från Contacts.json
+    {
+        var contractsFileExists = File.Exists("Contacts.json");
+        if (!contractsFileExists)
+        {
+            // Create Contacts file.
+        }
+
+        var options = new JsonSerializerOptions()
+        {
+            WriteIndented = true,
+            IncludeFields = true,
+            AllowTrailingCommas = true,
+            Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+        };
+
+        string contactJsonData = File.ReadAllText("Contacts.json");
+
+        ObservableCollection<Contact>? contactData = JsonSerializer.Deserialize<
+            ObservableCollection<Contact>
+        >(contactJsonData, options);
+
+        /* if (contactData == null)
+        {
+            throw new Exception("Unhandled error - when deserializing file"); //Hantera med try catch i program
+        } */
+
+        return contactData;
+    }
+
+    public static void SaveOnExit(ObservableCollection<Contact> updatedContactList)
+    {
+        var options = new JsonSerializerOptions()
+        {
+            WriteIndented = true,
+            IncludeFields = true,
+            AllowTrailingCommas = true,
+            Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+        };
+        string contactJsonData = JsonSerializer.Serialize(updatedContactList, options);
+        File.WriteAllTextAsync("Contacts.json", contactJsonData);
     }
 }

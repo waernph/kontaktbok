@@ -1,0 +1,10 @@
+[
+  {
+    "Name": "",
+    "Adress": "",
+    "ZipCode": "",
+    "City": "",
+    "Phone": "",
+    "Email": ""
+  }
+]
