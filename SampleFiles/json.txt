@@ -5,7 +5,7 @@
     "ZipCode": "416 74",
     "City": "Göteborg",
     "Phone": "070 123 45 67",
-    "Email": "philip.waern@example.com"
+    "EMail": "philip.waern@example.com"
   },
   {
     "Name": "Anna Svensson",
@@ -13,7 +13,7 @@
     "ZipCode": "411 05",
     "City": "Göteborg",
     "Phone": "073 456 78 90",
-    "Email": "anna.svensson@example.com"
+    "EMail": "anna.svensson@example.com"
   },
   {
     "Name": "Erik Johansson",
@@ -21,7 +21,7 @@
     "ZipCode": "114 55",
     "City": "Stockholm",
     "Phone": "076 234 56 78",
-    "Email": "erik.johansson@example.com"
+    "EMail": "erik.johansson@example.com"
   },
   {
     "Name": "Lisa Karlsson",
@@ -29,6 +29,6 @@
     "ZipCode": "222 22",
     "City": "Lund",
     "Phone": "072 987 65 43",
-    "Email": "lisa.karlsson@example.com"
+    "EMail": "lisa.karlsson@example.com"
   }
 ]
