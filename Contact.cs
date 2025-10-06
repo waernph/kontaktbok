@@ -175,9 +175,8 @@ public class Contact : INotifyPropertyChanged
         return searchResult;
     }
 
-    public static void SortContactList()
+    public static void SortContactList(ObservableCollection<Contact> contactList)
     {
-        var contactList = LoadAllContacts();
         ObservableCollection<Contact> sortedContactList = new() { };
         var tempSortedContactList = (
             from contact in contactList
