@@ -10,7 +10,8 @@ namespace kontaktbok;
 public partial class MainWindow : Window, INotifyPropertyChanged
 {
     public ObservableCollection<Contact> Contacts { get; } = new ObservableCollection<Contact>();
-    public ObservableCollection<Contact> Showcase { get; set; } = new ObservableCollection<Contact>();
+    public ObservableCollection<Contact> Showcase { get; set; } =
+        new ObservableCollection<Contact>();
 
     private Contact? selectedContact;
     public Contact? SelectedContact
