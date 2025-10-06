@@ -8,11 +8,19 @@
     "EMail": null
   },
   {
-    "Name": "John Doe",
-    "Adress": "Street 2",
-    "ZipCode": "123 45",
-    "City": "Awesome Town",
-    "Phone": "123 456 789",
-    "EMail": "john.doe@gmail.com"
+    "Name": "New Contact",
+    "Adress": "",
+    "ZipCode": "",
+    "City": "",
+    "Phone": "",
+    "EMail": ""
+  },
+  {
+    "Name": "New Contact",
+    "Adress": "",
+    "ZipCode": "",
+    "City": "",
+    "Phone": "",
+    "EMail": ""
   }
 ]

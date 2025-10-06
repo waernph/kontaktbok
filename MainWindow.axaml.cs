@@ -10,6 +10,7 @@ namespace kontaktbok;
 public partial class MainWindow : Window, INotifyPropertyChanged
 {
     public ObservableCollection<Contact> Contacts { get; } = new ObservableCollection<Contact>();
+    public ObservableCollection<Contact> Showcase { get; set; } = new ObservableCollection<Contact>();
 
     private Contact? selectedContact;
     public Contact? SelectedContact
@@ -30,6 +31,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         InitializeComponent();
 
         Contacts = Contact.LoadAllContacts();
+        UpdateList();
 
         Contact.SaveToFile(Contacts);
 
@@ -41,6 +43,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         if ((sender as Button)?.CommandParameter is Contact contact)
         {
             Contacts.Remove(contact);
+            UpdateList();
             Contact.SaveToFile(Contacts);
         }
     }
@@ -48,7 +51,19 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     private void AddOnClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         Contacts.Add(new Contact("New Contact", "", "", "", "", ""));
+        UpdateList();
         Contact.SaveToFile(Contacts);
+    }
+
+    private void SearchOnClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        UpdateList();
+    }
+
+    private void UpdateList()
+    {
+        Showcase = Contact.SearchContact(Contacts, SearchField.Text);
+        OnPropertyChanged(nameof(Showcase));
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

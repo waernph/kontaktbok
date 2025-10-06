@@ -12,11 +12,11 @@
             <TextBlock Text="Contact Book"/>
             <Button Content="Add Contact" Click="AddOnClick"/>
             <StackPanel Orientation="Horizontal">
-                <TextBox/>
-                <Button Content="Search"/>
+                <TextBox x:Name="SearchField"/>
+                <Button Content="Search" Click="SearchOnClick"/>
             </StackPanel>
         </StackPanel>
-        <ListBox x:Name="ContactsList" ItemsSource="{Binding Contacts}" SelectedItem="{Binding SelectedContact}" Width="300" Margin="10">
+        <ListBox x:Name="ContactsList" ItemsSource="{Binding Showcase}" SelectedItem="{Binding SelectedContact}" Width="300" Margin="10">
             <ListBox.ItemTemplate>
                 <DataTemplate x:DataType="local:Contact">
                     <DockPanel>

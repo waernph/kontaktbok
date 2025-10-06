@@ -1,4 +1,5 @@
 //using System.ComponentModel.DataAnnotations;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
@@ -151,24 +152,20 @@ public class Contact : INotifyPropertyChanged
         }
     }
 
-    public static ObservableCollection<Contact> SearchContact(string userInput)
+    public static ObservableCollection<Contact> SearchContact(ObservableCollection<Contact> contacts, string userInput)
     {
-        var loadedContactList = LoadAllContacts();
         ObservableCollection<Contact> searchResult = new() { };
         if (userInput == null || userInput == "")
         {
-            return loadedContactList;
+            return contacts;
         }
-        var result = (
-            from contact in loadedContactList
-            where
-                contact.Name.Contains(userInput)
-                || contact.Adress.Contains(userInput)
-                || contact.ZipCode.Contains(userInput)
-                || contact.City.Contains(userInput)
-                || contact.Phone.Contains(userInput)
-                || contact.EMail.Contains(userInput)
-            select contact
+        var result = contacts.Where(contact =>
+        (!string.IsNullOrEmpty(contact.Name) && contact.Name.Contains(userInput, StringComparison.OrdinalIgnoreCase))
+        || (!string.IsNullOrEmpty(contact.Adress) && contact.Adress.Contains(userInput, StringComparison.OrdinalIgnoreCase))
+        || (!string.IsNullOrEmpty(contact.ZipCode) && contact.ZipCode.Contains(userInput, StringComparison.OrdinalIgnoreCase))
+        || (!string.IsNullOrEmpty(contact.City) && contact.City.Contains(userInput, StringComparison.OrdinalIgnoreCase))
+        || (!string.IsNullOrEmpty(contact.Phone) && contact.Phone.Contains(userInput, StringComparison.OrdinalIgnoreCase))
+        || (!string.IsNullOrEmpty(contact.EMail) && contact.EMail.Contains(userInput, StringComparison.OrdinalIgnoreCase))
         ).ToList();
 
         foreach (var contact in result)
