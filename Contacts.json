@@ -4,23 +4,159 @@
     "Adress": "Kaggeledstorget 12",
     "ZipCode": "416 74",
     "City": "Göteborg",
-    "Phone": "070 123 45 67",
+    "Phone": "+46 70 123 45 67",
     "EMail": "philip.waern@example.com"
+  },
+  {
+    "Name": "Philip Andersson",
+    "Adress": "Fjärilsgatan 7",
+    "ZipCode": "412 85",
+    "City": "Göteborg",
+    "Phone": "+46 70 999 11 22",
+    "EMail": "philip.andersson@example.com"
   },
   {
     "Name": "Anna Svensson",
     "Adress": "Storgatan 45",
     "ZipCode": "411 05",
     "City": "Göteborg",
-    "Phone": "073 456 78 90",
+    "Phone": "+46 73 456 78 90",
     "EMail": "anna.svensson@example.com"
   },
   {
-    "Name": "John Doe",
-    "Adress": "Street 2",
-    "ZipCode": "123 45",
-    "City": "Awesome Town",
-    "Phone": "123 456 789",
-    "EMail": "john.doe@gmail.com"
+    "Name": "Anna Karlsson",
+    "Adress": "Skogsvägen 22",
+    "ZipCode": "222 22",
+    "City": "Lund",
+    "Phone": "+46 72 333 22 11",
+    "EMail": "anna.karlsson@example.com"
+  },
+  {
+    "Name": "Anna Lind",
+    "Adress": "Norrgatan 9",
+    "ZipCode": "972 31",
+    "City": "Luleå",
+    "Phone": "+46 70 100 22 33",
+    "EMail": "anna.lind@example.com"
+  },
+  {
+    "Name": "Erik Johansson",
+    "Adress": "Björkvägen 8",
+    "ZipCode": "114 55",
+    "City": "Stockholm",
+    "Phone": "+46 76 234 56 78",
+    "EMail": "erik.johansson@example.com"
+  },
+  {
+    "Name": "Erik Lundström",
+    "Adress": "Lillgatan 17",
+    "ZipCode": "981 32",
+    "City": "Kiruna",
+    "Phone": "+46 70 555 66 77",
+    "EMail": "erik.lundstrom@example.com"
+  },
+  {
+    "Name": "Lisa Karlsson",
+    "Adress": "Ängsvägen 3",
+    "ZipCode": "222 22",
+    "City": "Lund",
+    "Phone": "+46 72 987 65 43",
+    "EMail": "lisa.karlsson@example.com"
+  },
+  {
+    "Name": "Lisa Berg",
+    "Adress": "Klockgatan 11",
+    "ZipCode": "504 35",
+    "City": "Borås",
+    "Phone": "+46 73 444 22 55",
+    "EMail": "lisa.berg@example.com"
+  },
+  {
+    "Name": "Johan Nilsson",
+    "Adress": "Stationsgatan 1",
+    "ZipCode": "903 28",
+    "City": "Umeå",
+    "Phone": "+46 76 222 33 11",
+    "EMail": "johan.nilsson@example.com"
+  },
+  {
+    "Name": "Johan Persson",
+    "Adress": "Västra Hamngatan 4",
+    "ZipCode": "411 17",
+    "City": "Göteborg",
+    "Phone": "+46 73 888 99 00",
+    "EMail": "johan.persson@example.com"
+  },
+  {
+    "Name": "Maria Eriksson",
+    "Adress": "Lindvägen 14",
+    "ZipCode": "302 45",
+    "City": "Halmstad",
+    "Phone": "+46 70 222 44 88",
+    "EMail": "maria.eriksson@example.com"
+  },
+  {
+    "Name": "Maria Wästberg",
+    "Adress": "Östergatan 55",
+    "ZipCode": "211 43",
+    "City": "Malmö",
+    "Phone": "+46 72 333 77 66",
+    "EMail": "maria.wastberg@example.com"
+  },
+  {
+    "Name": "Anders Karlsson",
+    "Adress": "Södra Vägen 88",
+    "ZipCode": "412 54",
+    "City": "Göteborg",
+    "Phone": "+46 73 999 00 11",
+    "EMail": "anders.karlsson@example.com"
+  },
+  {
+    "Name": "Anders Wiberg",
+    "Adress": "Bäckvägen 2",
+    "ZipCode": "702 30",
+    "City": "Örebro",
+    "Phone": "+46 76 777 22 44",
+    "EMail": "anders.wiberg@example.com"
+  },
+  {
+    "Name": "Sofia Nilsson",
+    "Adress": "Solgatan 18",
+    "ZipCode": "621 45",
+    "City": "Visby",
+    "Phone": "+46 70 876 54 32",
+    "EMail": "sofia.nilsson@example.com"
+  },
+  {
+    "Name": "Sofia Larsson",
+    "Adress": "Havsgatan 9",
+    "ZipCode": "451 50",
+    "City": "Uddevalla",
+    "Phone": "+46 73 555 44 22",
+    "EMail": "sofia.larsson@example.com"
+  },
+  {
+    "Name": "Patrik Holm",
+    "Adress": "Kvarnvägen 1",
+    "ZipCode": "602 23",
+    "City": "Norrköping",
+    "Phone": "+46 70 121 31 41",
+    "EMail": "patrik.holm@example.com"
+  },
+  {
+    "Name": "Patrik Svensson",
+    "Adress": "Hantverkaregatan 19",
+    "ZipCode": "291 32",
+    "City": "Kristianstad",
+    "Phone": "+46 72 212 32 42",
+    "EMail": "patrik.svensson@example.com"
+  },
+  {
+    "Name": "Philip Nilsson",
+    "Adress": "Tallgatan 6",
+    "ZipCode": "214 55",
+    "City": "Malmö",
+    "Phone": "+46 70 333 22 11",
+    "EMail": "philip.nilsson@example.com"
   }
 ]

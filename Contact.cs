@@ -1,5 +1,6 @@
 //using System.ComponentModel.DataAnnotations;
 using System;
+using System.Collections;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
+using Avalonia.Data;
 
 //using Tmds.DBus.Protocol;
 
@@ -191,9 +193,10 @@ public class Contact : INotifyPropertyChanged
     public static void SortContactList(ObservableCollection<Contact> contactList)
     {
         ObservableCollection<Contact> sortedContactList = new() { };
+
         var tempSortedContactList = (
             from contact in contactList
-            orderby contact.Name
+            orderby contact.Name ascending
             select contact
         ).ToList();
         foreach (var contact in tempSortedContactList)
