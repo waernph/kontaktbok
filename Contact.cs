@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.IO.Pipelines;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -150,15 +151,31 @@ public class Contact : INotifyPropertyChanged
         }
     }
 
-    public static void SearchContact(string userInput)
+    public static ObservableCollection<Contact> SearchContact(string userInput)
     {
         var loadedContactList = LoadAllContacts();
-        //var contactList = (from contact in contactData select contact).ToList();
-
-        var result =
+        ObservableCollection<Contact> searchResult = new() { };
+        if (userInput == null || userInput == "")
+        {
+            return loadedContactList;
+        }
+        var result = (
             from contact in loadedContactList
-            where contact.Name.Contains(userInput) || contact.ZipCode.Contains(userInput)
-            select contact;
+            where
+                contact.Name.Contains(userInput)
+                || contact.Adress.Contains(userInput)
+                || contact.ZipCode.Contains(userInput)
+                || contact.City.Contains(userInput)
+                || contact.Phone.Contains(userInput)
+                || contact.EMail.Contains(userInput)
+            select contact
+        ).ToList();
+
+        foreach (var contact in result)
+        {
+            searchResult.Add(contact);
+        }
+        return searchResult;
     }
 
     public static ObservableCollection<Contact> LoadAllContacts() //Metod för att ladda alla kontakter från Contacts.json
