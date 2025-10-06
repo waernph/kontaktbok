@@ -10,7 +10,7 @@
     <StackPanel Orientation="Horizontal">
         <StackPanel Margin="10">
             <TextBlock Text="Contact Book"/>
-            <Button Content="Add Contact"/>
+            <Button Content="Add Contact" Click="AddOnClick"/>
             <StackPanel Orientation="Horizontal">
                 <TextBox/>
                 <Button Content="Search"/>
@@ -31,7 +31,7 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel IsVisible="{Binding $parent[ListBoxItem].IsSelected}" DockPanel.Dock="Right">
-                            <Button Content="Delete" HorizontalAlignment="Right"/>
+                            <Button Content="Delete" HorizontalAlignment="Right" Click="DeleteOnClick" CommandParameter="{Binding}"/>
                         </StackPanel>
                     </DockPanel>
                 </DataTemplate>
@@ -39,22 +39,22 @@
         </ListBox>
         <StackPanel DataContext="{Binding SelectedContact}" Width="200" Margin="10">
             <TextBlock Text="Name:"/>
-            <TextBox Text="{Binding Name, Mode=TwoWay}"/>
+            <TextBox Text="{Binding Name, Mode=TwoWay}" Watermark="John Doe"/>
 
             <TextBlock Text="Adress:"/>
-            <TextBox Text="{Binding Adress, Mode=TwoWay}"/>
+            <TextBox Text="{Binding Adress, Mode=TwoWay}" Watermark="Awesome Road 123"/>
 
             <TextBlock Text="Zip Code:"/>
-            <TextBox Text="{Binding ZipCode, Mode=TwoWay}"/>
+            <TextBox Text="{Binding ZipCode, Mode=TwoWay}" Watermark="123 45"/>
 
             <TextBlock Text="City:"/>
-            <TextBox Text="{Binding City, Mode=TwoWay}"/>
+            <TextBox Text="{Binding City, Mode=TwoWay}" Watermark="Awesome Town"/>
 
             <TextBlock Text="Phone Number:"/>
-            <TextBox Text="{Binding Phone, Mode=TwoWay}"/>
+            <TextBox Text="{Binding Phone, Mode=TwoWay}" Watermark="070 1337"/>
 
             <TextBlock Text="Email:"/>
-            <TextBox Text="{Binding EMail, Mode=TwoWay}"/>
+            <TextBox Text="{Binding EMail, Mode=TwoWay}" Watermark="john.doe@gmail.com"/>
         </StackPanel>
     </StackPanel>
 </Window>
