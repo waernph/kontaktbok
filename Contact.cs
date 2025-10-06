@@ -178,6 +178,22 @@ public class Contact : INotifyPropertyChanged
         return searchResult;
     }
 
+    public static void SortContactList()
+    {
+        var contactList = LoadAllContacts();
+        ObservableCollection<Contact> sortedContactList = new() { };
+        var tempSortedContactList = (
+            from contact in contactList
+            orderby contact.Name
+            select contact
+        ).ToList();
+        foreach (var contact in tempSortedContactList)
+        {
+            sortedContactList.Add(contact);
+        }
+        SaveToFile(sortedContactList);
+    }
+
     public static ObservableCollection<Contact> LoadAllContacts() //Metod för att ladda alla kontakter från Contacts.json
     {
         var contractsFileExists = File.Exists("Contacts.json");
