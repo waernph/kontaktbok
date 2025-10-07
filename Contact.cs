@@ -223,17 +223,4 @@ public class Contact : INotifyPropertyChanged
 
         return contactData;
     }
-
-    public static void SaveOnExit(ObservableCollection<Contact> updatedContactList)
-    {
-        var options = new JsonSerializerOptions()
-        {
-            WriteIndented = true,
-            IncludeFields = true,
-            AllowTrailingCommas = true,
-            Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
-        };
-        string contactJsonData = JsonSerializer.Serialize(updatedContactList, options);
-        File.WriteAllTextAsync("Contacts.json", contactJsonData);
-    }
 }
