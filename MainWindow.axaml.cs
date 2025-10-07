@@ -51,7 +51,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
     private void AddOnClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        Contacts.Add(new Contact("New Contact", "", "", "", "", ""));
+        Contacts.Insert(0, new Contact("New Contact", "", "", "", "", ""));
         UpdateList();
         Contact.SaveToFile(Contacts);
     }
