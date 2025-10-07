@@ -61,6 +61,12 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         UpdateList();
     }
 
+    private void ResetOnClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        SearchField.Text = "";
+        UpdateList();
+    }
+
     private void UpdateList()
     {
         Showcase = Contact.SearchContact(Contacts, SearchField.Text);
