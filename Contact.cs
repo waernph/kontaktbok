@@ -132,7 +132,6 @@ public class Contact : INotifyPropertyChanged
         var options = new JsonSerializerOptions
         {
             WriteIndented = true,
-            AllowTrailingCommas = true,
             Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
         };
         string json = JsonSerializer.Serialize(contactItem, options);
@@ -209,9 +208,6 @@ public class Contact : INotifyPropertyChanged
     {
         var options = new JsonSerializerOptions()
         {
-            WriteIndented = true,
-            IncludeFields = true,
-            AllowTrailingCommas = true,
             Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
         };
 
