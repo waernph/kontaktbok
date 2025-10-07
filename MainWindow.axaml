@@ -38,23 +38,23 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel DataContext="{Binding SelectedContact}" Width="200" Margin="10">
+        <StackPanel DataContext="{Binding SelectedContact}" Width="250" Margin="10">
             <TextBlock Text="Name:"/>
             <TextBox Text="{Binding Name, Mode=TwoWay}" Watermark="John Doe"/>
 
-            <TextBlock Text="Adress:"/>
+            <TextBlock Text="Adress:" Padding="0, 10, 0, 0"/>
             <TextBox Text="{Binding Adress, Mode=TwoWay}" Watermark="Awesome Road 123"/>
 
-            <TextBlock Text="Zip Code:"/>
+            <TextBlock Text="Zip Code:" Padding="0, 10, 0, 0"/>
             <TextBox Text="{Binding ZipCode, Mode=TwoWay}" Watermark="123 45"/>
 
-            <TextBlock Text="City:"/>
+            <TextBlock Text="City:" Padding="0, 10, 0, 0"/>
             <TextBox Text="{Binding City, Mode=TwoWay}" Watermark="Awesome Town"/>
 
-            <TextBlock Text="Phone Number:"/>
+            <TextBlock Text="Phone Number:" Padding="0, 10, 0, 0"/>
             <TextBox Text="{Binding Phone, Mode=TwoWay}" Watermark="070 1337"/>
 
-            <TextBlock Text="Email:"/>
+            <TextBlock Text="Email:" Padding="0, 10, 0, 0"/>
             <TextBox Text="{Binding EMail, Mode=TwoWay}" Watermark="john.doe@gmail.com"/>
         </StackPanel>
     </StackPanel>
