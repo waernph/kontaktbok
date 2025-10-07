@@ -1,5 +1,6 @@
 //using System.ComponentModel.DataAnnotations;
 using System;
+using System.Collections;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
+using Avalonia.Data;
 
 //using Tmds.DBus.Protocol;
 
@@ -21,7 +23,7 @@ public class Contact : INotifyPropertyChanged
     private string city;
     private string phone;
     private string eMail;
-    private readonly string filePath = "Contacts.json";
+    private string filePath = "Contacts.json";
 
     public string Name
     {
@@ -127,16 +129,6 @@ public class Contact : INotifyPropertyChanged
 
     public static void SaveToFile(ObservableCollection<Contact> contactItem)
     {
-        /* var contactItem = new
-        {
-            Name,
-            Adress,
-            ZipCode,
-            City,
-            Phone,
-            EMail,
-        }; */
-
         string fileName = "Contacts.json";
         var options = new JsonSerializerOptions
         {
@@ -152,21 +144,44 @@ public class Contact : INotifyPropertyChanged
         }
     }
 
-    public static ObservableCollection<Contact> SearchContact(ObservableCollection<Contact> contacts, string userInput)
+    public static ObservableCollection<Contact> SearchContact(
+        ObservableCollection<Contact> contacts,
+        string userInput
+    )
     {
         ObservableCollection<Contact> searchResult = new() { };
         if (userInput == null || userInput == "")
         {
             return contacts;
         }
-        var result = contacts.Where(contact =>
-        (!string.IsNullOrEmpty(contact.Name) && contact.Name.Contains(userInput, StringComparison.OrdinalIgnoreCase))
-        || (!string.IsNullOrEmpty(contact.Adress) && contact.Adress.Contains(userInput, StringComparison.OrdinalIgnoreCase))
-        || (!string.IsNullOrEmpty(contact.ZipCode) && contact.ZipCode.Contains(userInput, StringComparison.OrdinalIgnoreCase))
-        || (!string.IsNullOrEmpty(contact.City) && contact.City.Contains(userInput, StringComparison.OrdinalIgnoreCase))
-        || (!string.IsNullOrEmpty(contact.Phone) && contact.Phone.Contains(userInput, StringComparison.OrdinalIgnoreCase))
-        || (!string.IsNullOrEmpty(contact.EMail) && contact.EMail.Contains(userInput, StringComparison.OrdinalIgnoreCase))
-        ).ToList();
+        var result = contacts
+            .Where(contact =>
+                (
+                    !string.IsNullOrEmpty(contact.Name)
+                    && contact.Name.Contains(userInput, StringComparison.OrdinalIgnoreCase)
+                )
+                || (
+                    !string.IsNullOrEmpty(contact.Adress)
+                    && contact.Adress.Contains(userInput, StringComparison.OrdinalIgnoreCase)
+                )
+                || (
+                    !string.IsNullOrEmpty(contact.ZipCode)
+                    && contact.ZipCode.Contains(userInput, StringComparison.OrdinalIgnoreCase)
+                )
+                || (
+                    !string.IsNullOrEmpty(contact.City)
+                    && contact.City.Contains(userInput, StringComparison.OrdinalIgnoreCase)
+                )
+                || (
+                    !string.IsNullOrEmpty(contact.Phone)
+                    && contact.Phone.Contains(userInput, StringComparison.OrdinalIgnoreCase)
+                )
+                || (
+                    !string.IsNullOrEmpty(contact.EMail)
+                    && contact.EMail.Contains(userInput, StringComparison.OrdinalIgnoreCase)
+                )
+            )
+            .ToList();
 
         foreach (var contact in result)
         {
@@ -178,9 +193,10 @@ public class Contact : INotifyPropertyChanged
     public static void SortContactList(ObservableCollection<Contact> contactList)
     {
         ObservableCollection<Contact> sortedContactList = new() { };
+
         var tempSortedContactList = (
             from contact in contactList
-            orderby contact.Name
+            orderby contact.Name ascending
             select contact
         ).ToList();
         foreach (var contact in tempSortedContactList)
