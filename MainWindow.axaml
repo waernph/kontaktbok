@@ -15,6 +15,7 @@
                 <TextBox x:Name="SearchField"/>
                 <Button Content="Search" Click="SearchOnClick"/>
             </StackPanel>
+            <Button Content="Reset Search" Click="ResetOnClick"/>
         </StackPanel>
         <ListBox x:Name="ContactsList" ItemsSource="{Binding Showcase}" SelectedItem="{Binding SelectedContact}" Width="300" Margin="10">
             <ListBox.ItemTemplate>
