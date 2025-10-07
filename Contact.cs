@@ -23,7 +23,6 @@ public class Contact : INotifyPropertyChanged
     private string city;
     private string phone;
     private string eMail;
-    private string filePath = "Contacts.json";
 
     public string Name
     {
@@ -208,12 +207,6 @@ public class Contact : INotifyPropertyChanged
 
     public static ObservableCollection<Contact> LoadAllContacts() //Metod för att ladda alla kontakter från Contacts.json
     {
-        var contractsFileExists = File.Exists("Contacts.json");
-        if (!contractsFileExists)
-        {
-            // Create Contacts file.
-        }
-
         var options = new JsonSerializerOptions()
         {
             WriteIndented = true,
@@ -227,11 +220,6 @@ public class Contact : INotifyPropertyChanged
         ObservableCollection<Contact>? contactData = JsonSerializer.Deserialize<
             ObservableCollection<Contact>
         >(contactJsonData, options);
-
-        /* if (contactData == null)
-        {
-            throw new Exception("Unhandled error - when deserializing file"); //Hantera med try catch i program
-        } */
 
         return contactData;
     }
