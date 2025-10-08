@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.VisualTree;
-using Tmds.DBus.Protocol;
 
 namespace kontaktbok;
 

@@ -1,18 +1,11 @@
-//using System.ComponentModel.DataAnnotations;
 using System;
-using System.Collections;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-using System.IO.Pipelines;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
-using Avalonia.Data;
-using Tmds.DBus.Protocol;
-
-//using Tmds.DBus.Protocol;
 
 namespace kontaktbok;
 
