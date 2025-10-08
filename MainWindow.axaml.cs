@@ -34,7 +34,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
     public virtual void SaveOnExit()
     {
-        Contact.SaveToFile(Contacts);
+        Contact.SortContactList(Contacts);
     }
 
     private void DeleteOnClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e) //Vasiliki
