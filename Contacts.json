@@ -1,5 +1,13 @@
 [
   {
+    "Name": "New Contact",
+    "Adress": "dsfdsfdsf",
+    "ZipCode": "",
+    "City": "",
+    "Phone": "",
+    "EMail": ""
+  },
+  {
     "Name": "Philip Wærn",
     "Adress": "Kaggeledstorget 12",
     "ZipCode": "416 74",

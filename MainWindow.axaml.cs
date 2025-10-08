@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.VisualTree;
+using Tmds.DBus.Protocol;
 
 namespace kontaktbok;
 
@@ -30,16 +32,17 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     public MainWindow()
     {
         InitializeComponent();
-
         Contacts = Contact.LoadAllContacts();
         UpdateList();
-
-        Contact.SaveToFile(Contacts);
-
         DataContext = this;
     }
 
-    private void DeleteOnClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    public virtual void SaveOnExit()
+    {
+        Contact.SaveToFile(Contacts);
+    }
+
+    private void DeleteOnClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e) //Vasiliki
     {
         if ((sender as Button)?.CommandParameter is Contact contact)
         {

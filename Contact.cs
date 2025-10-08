@@ -10,6 +10,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
 using Avalonia.Data;
+using Tmds.DBus.Protocol;
 
 //using Tmds.DBus.Protocol;
 
@@ -23,16 +24,22 @@ public class Contact : INotifyPropertyChanged
     private string city;
     private string phone;
     private string eMail;
+    static readonly string filePath = "Contacts.json";
+    static JsonSerializerOptions options = new JsonSerializerOptions
+    {
+        WriteIndented = true,
+        Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+    };
 
     public string Name
     {
         get => name;
         set
         {
-            if (name != value)
+            if (name != value) //Kontrollera lista skiljer sig från value
             {
-                name = value;
-                OnPropertyChanged(nameof(Name));
+                name = value; //Tilldela name av value
+                OnPropertyChanged(nameof(Name)); //uppdatera gränssnitt Name
             }
         }
     }
@@ -128,15 +135,9 @@ public class Contact : INotifyPropertyChanged
 
     public static void SaveToFile(ObservableCollection<Contact> contactItem)
     {
-        string fileName = "Contacts.json";
-        var options = new JsonSerializerOptions
-        {
-            WriteIndented = true,
-            Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
-        };
         string json = JsonSerializer.Serialize(contactItem, options);
 
-        using (StreamWriter writer = new StreamWriter(fileName, false))
+        using (StreamWriter writer = new StreamWriter(filePath, false))
         {
             writer.WriteLine(json);
         }
@@ -188,7 +189,7 @@ public class Contact : INotifyPropertyChanged
         return searchResult;
     }
 
-    public static void SortContactList(ObservableCollection<Contact> contactList)
+    public static void SortContactList(ObservableCollection<Contact> contactList) //Vasiliki
     {
         ObservableCollection<Contact> sortedContactList = new() { };
 
@@ -206,17 +207,12 @@ public class Contact : INotifyPropertyChanged
 
     public static ObservableCollection<Contact> LoadAllContacts() //Metod för att ladda alla kontakter från Contacts.json
     {
-        var options = new JsonSerializerOptions()
-        {
-            Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
-        };
-
-        string contactJsonData = File.ReadAllText("Contacts.json");
+        string contactJsonData = File.ReadAllText(filePath);
 
         ObservableCollection<Contact>? contactData = JsonSerializer.Deserialize<
             ObservableCollection<Contact>
         >(contactJsonData, options);
 
-        return contactData;
+        return contactData!;
     }
 }
