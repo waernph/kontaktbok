@@ -54,6 +54,11 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         Contact.SaveToFile(Contacts);
     }
 
+    private void SaveOnClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        Contact.SaveToFile(Contacts);
+    }
+
     private void SearchOnClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         UpdateList();
